@@ -2,67 +2,51 @@ import disnake
 from disnake.ext import commands
 import wavelink
 
-class MusicCog(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+class Music(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        self.bot.wavelink = wavelink.Client(self.bot)
-        await self.bot.wavelink.initiate_node(
-            host='192.168.1.125',
-            port=2333,
-            rest_uri='http://localhost:2333',
-            password='akela',  # Убедитесь, что этот пароль совпадает с конфигурацией Lavalink
-            identifier='MAIN',
-            region='eu'
-        )
-
-    @commands.slash_command(description="Присоеденение бота в канал")
-    async def join(self, inter: disnake.AppCmdInter):
-        """Присоединиться к голосовому каналу."""
-        if inter.author.voice:
-            channel = inter.author.voice.channel
-            await channel.connect(cls=wavelink.AudioNode)
-            await inter.response.send_message(f'Подключен к {channel.name}')
+    @commands.command()
+    async def join(self, ctx):
+        if ctx.author.voice:
+            channel = ctx.author.voice.channel
+            if ctx.voice_client is None:
+                await channel.connect(cls=wavelink.Player)
+                await ctx.send(f"Подключился к {channel.name}")
+            else:
+                await ctx.send("Я уже подключен к каналу.")
         else:
-            await inter.response.send_message("Вы не находитесь в голосовом канале.")
+            await ctx.send("Вы должны быть в голосовом канале.")
 
-    @commands.slash_command(description="Выход бота из канала")
-    async def leave(self, inter: disnake.AppCmdInter):
-        """Покинуть голосовой канал."""
-        if inter.guild.voice_client:
-            await inter.guild.voice_client.disconnect()
-            await inter.response.send_message("Отключился от голосового канала.")
+    @commands.command()
+    async def leave(self, ctx):
+        if ctx.voice_client:
+            await ctx.voice_client.disconnect()
+            await ctx.send("Отключился от канала.")
         else:
-            await inter.response.send_message("Я не в голосовом канале.")
+            await ctx.send("Я не подключен к голосовому каналу.")
 
-    @commands.slash_command(description="Начать воспроизвдение")
-    async def play(self, inter: disnake.AppCmdInter, url: str):
-        """Воспроизвести музыку по ссылке."""
-        if not inter.guild.voice_client:
-            await inter.response.send_message("Я не подключен к голосовому каналу. Используйте команду /join.")
-            return
+    @commands.command()
+    async def play(self, ctx, *, query: str):
+        if not ctx.voice_client:
+            return await ctx.send("Сначала подключитесь к голосовому каналу с !join")
 
-        player = inter.guild.voice_client
+        player = ctx.voice_client
+        tracks = await wavelink.YouTubeTrack.search(query)
         
-        # Ищем трек
-        track = await self.bot.wavelink.get_tracks(url)
-        if not track:
-            await inter.response.send_message("Не удалось найти трек.")
-            return
-        
-        await player.play(track[0])
-        await inter.response.send_message(f"Воспроизведение: {track[0].title}")
+        if not tracks:
+            return await ctx.send("Трек не найден.")
 
-    @commands.slash_command(description="Остановить воспризведение")
-    async def stop(self, inter: disnake.AppCmdInter):
-        """Остановить воспроизведение музыки."""
-        if inter.guild.voice_client and inter.guild.voice_client.is_playing():
-            await inter.guild.voice_client.stop()
-            await inter.response.send_message("Музыка остановлена.")
+        await player.play(tracks[0])
+        await ctx.send(f"Играю: {tracks[0].title}")
+
+    @commands.command()
+    async def stop(self, ctx):
+        if ctx.voice_client and ctx.voice_client.is_playing():
+            await ctx.voice_client.stop()
+            await ctx.send("Остановил воспроизведение.")
         else:
-            await inter.response.send_message("Я не воспроизводлю музыку.")
+            await ctx.send("Ничего не играет.")
 
-def setup(bot: commands.Bot):
-    bot.add_cog(MusicCog(bot))
+def setup(bot):
+    bot.add_cog(Music(bot))
