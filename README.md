@@ -14,6 +14,7 @@ Welcome to the Discord Bot repository! This bot comes equipped with a variety of
 To get started, you'll need to install the required libraries. Run the following commands:
 
 pip install disnake
+
 pip install wavelink
 
 
@@ -49,6 +50,7 @@ For optimal mute functionality, it's recommended to configure the role hierarchy
 Чтобы начать, вам нужно установить необходимые библиотеки. Выполните следующие команды:
 
 pip install disnake
+
 pip install wavelink
 
 
@@ -63,9 +65,6 @@ pip install wavelink
 ### Настройка функции mute
 
 Для оптимальной работы функции mute рекомендуется настроить иерархию ролей на вашем сервере и убедиться, что роль, созданная ботом, правильно настроена.
-
-Чтобы сгенерировать изображения, перейдите на https://fusionbrain.ai/ и получите API_KEY и SECRET_KEY.
-
 Для настройки mute, рекомендуется настроить иэрархию ролей на сервере и саму роль созданую ботом.
 
 
