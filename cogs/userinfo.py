@@ -10,7 +10,7 @@ class UserInfo(commands.Cog):
         if member is None:
             member = ctx.author  # Если пользователь не указан, используем автора сообщения
 
-        embed = disnake.Embed(title=f"Информация о пользователе: {member.name}", color=disnake.Color.blue())
+        embed = disnake.Embed(title=f"Информация о пользователе: {member.name}", color=0x0000FF)
         embed.add_field(name="ID пользователя", value=member.id, inline=False)
         embed.add_field(name="Имя пользователя", value=member.mention, inline=False)
         embed.add_field(name="Аккаунт создан", value=member.created_at.strftime("%Y-%m-%d %H:%M:%S"), inline=False)
