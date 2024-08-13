@@ -7,6 +7,7 @@ Welcome to the Discord Bot repository! This bot comes equipped with a variety of
 - **Image Generation**: Create stunning images on the fly!
 - **Music Playback**: Enjoy seamless music streaming in your server.
 - **Moderation Tools**: Keep your server safe and organized.
+- **Rank system**: Level of server participants for their activity
 - **Logging**: Track activities and changes in your server.
 
 ## Installation
@@ -17,6 +18,9 @@ pip install disnake
 
 pip install wavelink
 
+pip install requests
+
+pip install db-sqlite3
 
 ### Lavalink Documentation
 
@@ -43,6 +47,7 @@ For optimal mute functionality, it's recommended to configure the role hierarchy
 - **Генерация изображений**: Создавайте потрясающие изображения на лету!
 - **Воспроизведение музыки**: Наслаждайтесь бесперебойным стримингом музыки на вашем сервере.
 - **Инструменты модерации**: Поддерживайте безопасность и порядок на сервере.
+- **Ранговая система**: Уровень участников сервера за их активность
 - **Логирование**: Отслеживайте действия и изменения на вашем сервере.
 
 ## Установка
@@ -53,6 +58,9 @@ pip install disnake
 
 pip install wavelink
 
+pip install requests
+
+pip install db-sqlite3
 
 ### Документация Lavalink
 
