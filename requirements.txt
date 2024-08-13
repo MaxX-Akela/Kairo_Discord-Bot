@@ -1,3 +1,4 @@
 requests
 disnake
 wavelink
+db-sqlite3
