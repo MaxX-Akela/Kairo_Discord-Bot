@@ -30,9 +30,6 @@ For detailed instructions on setting up Lavalink, please refer to the [Lavalink 
 
 To enable image generation, visit [FusionBrain](https://fusionbrain.ai/) and obtain your API_KEY and SECRET_KEY.
 
-### Mute Configuration
-
-For optimal mute functionality, it's recommended to configure the role hierarchy on your server and ensure the bot-created role is properly set up.
 
 ---
 
@@ -70,9 +67,5 @@ pip install db-sqlite3
 
 Чтобы включить генерацию изображений, перейдите на [FusionBrain](https://fusionbrain.ai/) и получите ваш API_KEY и SECRET_KEY.
 
-### Настройка функции mute
-
-Для оптимальной работы функции mute рекомендуется настроить иерархию ролей на вашем сервере и убедиться, что роль, созданная ботом, правильно настроена.
-Для настройки mute, рекомендуется настроить иэрархию ролей на сервере и саму роль созданую ботом.
 
 
