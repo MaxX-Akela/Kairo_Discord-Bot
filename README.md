@@ -9,6 +9,7 @@ Welcome to the Discord Bot repository! This bot comes equipped with a variety of
 - **Moderation Tools**: Keep your server safe and organized.
 - **Rank system**: Level of server participants for their activity
 - **Logging**: Track activities and changes in your server.
+- **Game**: Play exciting mini-games right in the chat.
 
 ## Installation
 
@@ -46,6 +47,7 @@ To enable image generation, visit [FusionBrain](https://fusionbrain.ai/) and obt
 - **Инструменты модерации**: Поддерживайте безопасность и порядок на сервере.
 - **Ранговая система**: Уровень участников сервера за их активность
 - **Логирование**: Отслеживайте действия и изменения на вашем сервере.
+- **Игры**: Играйте в захватывающие мини-игры прямо в чате.
 
 ## Установка
 
