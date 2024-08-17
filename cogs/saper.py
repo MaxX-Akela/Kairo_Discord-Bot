@@ -26,7 +26,6 @@ class Minesweeper(commands.Cog):
         action_rows = [disnake.ui.ActionRow(*row) for row in buttons]
         await interaction.send("Нажмите на ячейку, чтобы открыть её!", components=action_rows)
 
-        # Ожидаем нажатие кнопки
         interaction_response = await self.bot.wait_for("button_click", check=lambda i: i.user == interaction.user)
 
         await self.handle_click(interaction_response)
@@ -56,7 +55,6 @@ class Minesweeper(commands.Cog):
             action_rows = [disnake.ui.ActionRow(*row) for row in buttons]
             await interaction_response.message.edit(components=action_rows)
 
-            # После обработки нажатия, снова ожидаем нажатие кнопки
             await self.send_board(interaction_response)
 
 def setup(bot):
